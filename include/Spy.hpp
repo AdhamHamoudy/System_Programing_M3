@@ -5,8 +5,8 @@
 
 namespace coup {
 
-class Spy : public Player {
-public:
+class Spy : public virtual Player {
+ public:
     Spy(Game& game, const std::string& name);
 
     // Spy action: View target's coins and block arrest

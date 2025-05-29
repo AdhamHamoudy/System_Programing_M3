@@ -14,8 +14,15 @@ void Judge::cancel_bribe(Player& target) {
     if (!target.active()) {
         throw std::runtime_error("Target already eliminated.");
     }
-    // No further action needed – bribe already paid and lost.
+    if (target.get_last_action() != "bribe") {
+        throw std::runtime_error("Can only cancel a bribe action.");
+    }
+    if (target.coins() < 0) {
+        throw std::runtime_error("Bribe already used or no effect.");
+    }
+    // No refund. Bribe is lost.
 }
+
 
 void Judge::on_sanctioned_by(Player& attacker) {
     attacker.remove_coins(1);  // Attacker pays extra

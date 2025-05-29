@@ -75,7 +75,7 @@ void Player::remove_coins(int amount) {
 void Player::gather() {
     validate_turn();
     if (under_sanction) {
-        throw runtime_error("You are under sanction and cannot gather.");
+        throw runtime_error("Cannot perform Gather/Tax due to active Sanction. Turn is skipped.");
     }
     last_action = "gather";
     add_coins(1);
@@ -85,7 +85,7 @@ void Player::gather() {
 void Player::tax() {
     validate_turn();
     if (under_sanction) {
-        throw runtime_error("You are under sanction and cannot tax.");
+        throw runtime_error("Cannot perform Gather/Tax due to active Sanction. Turn is skipped.");
     }
     last_action = "tax";
     add_coins(2);

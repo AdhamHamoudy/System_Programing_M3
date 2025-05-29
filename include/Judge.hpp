@@ -5,7 +5,7 @@
 
 namespace coup {
 
-class Judge : public Player {
+class Judge : public virtual Player{
 public:
     Judge(Game& game, const std::string& name);
 

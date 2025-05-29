@@ -5,8 +5,8 @@
 
 namespace coup {
 
-class General : public Player {
-public:
+ class General : public virtual Player {
+        public:
     General(Game& game, const std::string& name);
 
     // Special ability: blocks a coup against a player (including self)

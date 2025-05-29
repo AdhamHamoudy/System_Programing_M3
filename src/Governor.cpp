@@ -20,6 +20,9 @@ void Governor::tax() {
 }
 
 void Governor::undo(Player& other) {
+    if (other.get_last_action() != "tax") {
+        throw std::runtime_error("Governor can only undo a tax action.");
+    }    
     // Governor can cancel the tax effect of another player
     if (!other.active()) {
         throw runtime_error("Cannot undo a dead player.");
