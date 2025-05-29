@@ -447,15 +447,17 @@ int main() {
                                 logMessage = "Select a target for " + btn.label;
                                 turnPersistentMessage.clear();
                             }
-                        } catch (const std::exception& ex) {
-                            logMessage = std::string("Error: ") + ex.what();
+                        }  catch (const std::exception& ex) {
+                            logMessage = "Error: " + std::string(ex.what());
                             spy_revealed_players.clear();
-                            // End turn if sanctioned on GATHER or TAX
-                            std::string err = ex.what();
-                            if ((btn.label == "GATHER" || btn.label == "TAX") && err.find("sanction") != std::string::npos) {
+                        
+                            bool isBlocked = (btn.label == "GATHER" || btn.label == "TAX");
+                            if (isBlocked) {
                                 current->end_turn();
+                                logMessage += " (Turn skipped due to sanction.)";
                             }
                         }
+                        
                         break;
                     }
                 }
